@@ -64,20 +64,22 @@
     .skip-link:focus { left: 8px; }
 
     /* ── Top bar ─────────────────────────────── */
-    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; padding-bottom: 20px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 14px; padding-bottom: 14px; }
     .presents { display: flex; align-items: center; gap: 10px; color: var(--muted); font: 600 12px/1 var(--font-display); letter-spacing: .16em; text-transform: uppercase; }
     .presents img { width: 26px; height: auto; }
     .presents:hover { color: var(--white); text-decoration: none; }
     .toplink { font: 600 14px/1 var(--font-display); color: var(--text); }
 
     /* ── Hero ────────────────────────────────── */
-    .hero { padding-top: 56px; padding-bottom: 72px; }
-    .pill { display: inline-block; background: var(--sky); color: var(--night); font: 700 13px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; padding: 8px 12px; border-radius: 4px; }
-    .logotype { margin-top: 22px; font-size: clamp(52px, 9vw, 104px); line-height: 1; font-weight: 800; letter-spacing: -.02em; }
+    .hero { padding-top: 20px; padding-bottom: 36px; }
+    .pill { display: inline-block; background: var(--sky); color: var(--night); font: 700 11px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; padding: 6px 10px; border-radius: 4px; }
+    .logotype { margin-top: 14px; font-size: clamp(40px, 6vw, 64px); line-height: 1; font-weight: 800; letter-spacing: -.02em; }
     .logotype .the { font-family: var(--font-serif); font-style: italic; font-weight: 500; letter-spacing: 0; color: var(--text); margin-right: .12em; }
     .logotype .q { color: var(--sky); }
-    .tagline { margin-top: 20px; font: italic 400 clamp(20px, 2.6vw, 26px)/1.35 var(--font-body); color: var(--white); }
-    .lede { margin-top: 18px; max-width: 640px; color: var(--text); }
+    .tagline { margin-top: 10px; font: italic 400 clamp(18px, 2vw, 21px)/1.35 var(--font-body); color: var(--white); }
+    .lede { margin-top: 12px; max-width: 760px; font-size: 17px; color: var(--text); }
+    .em-link { font-weight: 600; color: var(--sky); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+    .em-link:hover { color: var(--white); }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
     .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 6px; font: 600 16px/1 var(--font-display); border: 2px solid transparent; transition: background .15s, color .15s, border-color .15s; }
     .btn:hover { text-decoration: none; }
@@ -90,6 +92,7 @@
 
     /* ── Section heads ───────────────────────── */
     .section { padding-top: 72px; padding-bottom: 72px; border-top: 1px solid var(--line); }
+    .hero + .section { padding-top: 36px; }
     .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
     .section-head h2 { font-size: clamp(26px, 3.4vw, 34px); font-weight: 700; }
     .section-head a { font: 600 15px/1 var(--font-display); }
@@ -173,18 +176,7 @@
       <span class="pill">A conversation series</span>
       <h1 class="logotype"><span class="the">The</span>AI Analyst<span class="q">?</span></h1>
       <p class="tagline">Diverse voices on the changing nature of data analysis.</p>
-      <p class="lede">Each episode, I sit down with founders, researchers and practitioners to test what AI is really doing to our field. Live conversations, honest demos, and plenty of disagreement. Hosted by <a href="https://howtospeakdata.com/">Andy Cotgreave</a>.</p>
-      <div class="actions">
-        <a class="btn btn--primary" href="https://howtospeakdata.substack.com/subscribe" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42H1.46V3.6h21.08v2.82zM1.46 9.24V24L12 18.12 22.54 24V9.24H1.46zM22.54 0H1.46v2.82h21.08V0z"/></svg>
-          Subscribe on Substack
-        </a>
-        <a class="btn btn--ghost" href="https://www.linkedin.com/in/acotgreave/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-          Follow on LinkedIn
-        </a>
-      </div>
-      <p class="meta-line">9 episodes so far · <a href="https://www.youtube.com/playlist?list=PLTxpUfdl7jdJm2jZ8T7VV0zCTV_ARnch9" target="_blank" rel="noopener">Watch on YouTube</a></p>
+      <p class="lede">Each episode, I sit down with founders, researchers and practitioners to test what AI is really doing to our field. Live conversations, honest demos, and plenty of disagreement. Hosted by <a href="https://howtospeakdata.com/">Andy Cotgreave</a>. To catch the next one, <a class="em-link" href="https://howtospeakdata.substack.com/subscribe" target="_blank" rel="noopener">subscribe on Substack</a> and <a class="em-link" href="https://www.linkedin.com/in/acotgreave/" target="_blank" rel="noopener">follow me on LinkedIn</a>.</p>
     </section>
 
     <section class="wrap section" aria-labelledby="latest-h">
@@ -312,7 +304,7 @@
       <h2 id="partner-h">Building something that changes how people analyse data?</h2>
       <div>
         <p>The AI Analyst? features products and ideas that are reshaping our field. Brand partnerships include a live episode, clips and a newsletter write-up.</p>
-        <p><a href="mailto:andy@howtospeakdata.com?subject=The%20AI%20Analyst%3F%20partnership">Talk to me about a partnership →</a></p>
+        <p>Talk to me about a partnership: <a class="em-link" href="mailto:andy@howtospeakdata.com?subject=The%20AI%20Analyst%20partnership">andy@howtospeakdata.com</a></p>
       </div>
     </section>
   </main>
