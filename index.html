@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The AI Analyst? | A conversation series with Andy Cotgreave</title>
+  <meta name="description" content="The AI Analyst? is a conversation series from How To Speak Data. Andy Cotgreave talks with founders, researchers and practitioners about how AI is changing data analysis. Watch all episodes.">
+  <link rel="canonical" href="https://aianalyst.howtospeakdata.com/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="How To Speak Data">
+  <meta property="og:title" content="The AI Analyst? A conversation series with Andy Cotgreave">
+  <meta property="og:description" content="Diverse voices on the changing nature of data analysis. Watch every episode.">
+  <meta property="og:url" content="https://aianalyst.howtospeakdata.com/">
+  <meta property="og:image" content="https://aianalyst.howtospeakdata.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --night: #0A1428;      /* show background */
+      --night-2: #101E3A;    /* raised panels */
+      --night-3: #17294C;
+      --line: #22375F;
+      --sky: #46B8E6;        /* episode pill + rule */
+      --sky-light: #7DD3FC;
+      --navy: #14336B;
+      --white: #FFFFFF;
+      --text: #D5DEEB;
+      --muted: #9AAAC2;
+      --paper: #FAF9F6;
+      --ink: #0B1220;
+      --font-display: 'Poppins', system-ui, sans-serif;
+      --font-body: 'Source Sans 3', system-ui, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --max: 1140px;
+      --gutter: 32px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0;
+      background: var(--night);
+      color: var(--text);
+      font: 18px/1.55 var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      border-top: 4px solid var(--sky);
+    }
+    a { color: var(--sky-light); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3 { margin: 0; font-family: var(--font-display); color: var(--white); text-wrap: balance; }
+    p { margin: 0; text-wrap: pretty; }
+    img { max-width: 100%; display: block; }
+    :focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .skip-link { position: absolute; left: -9999px; top: 8px; z-index: 10; background: var(--white); color: var(--ink); padding: 8px 14px; }
+    .skip-link:focus { left: 8px; }
+
+    /* ── Top bar ─────────────────────────────── */
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 20px; padding-bottom: 20px; }
+    .presents { display: flex; align-items: center; gap: 10px; color: var(--muted); font: 600 12px/1 var(--font-display); letter-spacing: .16em; text-transform: uppercase; }
+    .presents img { width: 26px; height: auto; }
+    .presents:hover { color: var(--white); text-decoration: none; }
+    .toplink { font: 600 14px/1 var(--font-display); color: var(--text); }
+
+    /* ── Hero ────────────────────────────────── */
+    .hero { padding-top: 56px; padding-bottom: 72px; }
+    .pill { display: inline-block; background: var(--sky); color: var(--night); font: 700 13px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; padding: 8px 12px; border-radius: 4px; }
+    .logotype { margin-top: 22px; font-size: clamp(52px, 9vw, 104px); line-height: 1; font-weight: 800; letter-spacing: -.02em; }
+    .logotype .the { font-family: var(--font-serif); font-style: italic; font-weight: 500; letter-spacing: 0; color: var(--text); margin-right: .12em; }
+    .logotype .q { color: var(--sky); }
+    .tagline { margin-top: 20px; font: italic 400 clamp(20px, 2.6vw, 26px)/1.35 var(--font-body); color: var(--white); }
+    .lede { margin-top: 18px; max-width: 640px; color: var(--text); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 6px; font: 600 16px/1 var(--font-display); border: 2px solid transparent; transition: background .15s, color .15s, border-color .15s; }
+    .btn:hover { text-decoration: none; }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .btn--primary { background: var(--sky); color: var(--night); }
+    .btn--primary:hover { background: var(--sky-light); color: var(--night); }
+    .btn--ghost { border-color: var(--line); color: var(--white); }
+    .btn--ghost:hover { border-color: var(--sky); color: var(--white); }
+    .meta-line { margin-top: 18px; font-size: 15px; color: var(--muted); }
+
+    /* ── Section heads ───────────────────────── */
+    .section { padding-top: 72px; padding-bottom: 72px; border-top: 1px solid var(--line); }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+    .section-head h2 { font-size: clamp(26px, 3.4vw, 34px); font-weight: 700; }
+    .section-head a { font: 600 15px/1 var(--font-display); }
+
+    /* ── Video (click to play) ───────────────── */
+    .video { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: var(--night-2); }
+    .video img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s, opacity .3s; }
+    .video:hover img { transform: scale(1.03); opacity: .9; }
+    .video .play { position: absolute; inset: 0; margin: auto; width: 68px; height: 68px; border-radius: 50%; background: rgba(10, 20, 40, .78); border: 2px solid var(--sky); display: grid; place-items: center; transition: background .15s; }
+    .video .play::after { content: ""; margin-left: 5px; border-style: solid; border-width: 11px 0 11px 18px; border-color: transparent transparent transparent var(--white); }
+    .video:hover .play { background: var(--sky); }
+    .video:hover .play::after { border-left-color: var(--night); }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    .ep-num { display: inline-block; background: var(--sky); color: var(--night); font: 700 12px/1 var(--font-display); padding: 6px 9px; border-radius: 3px; }
+    .ep-date { font-size: 14px; color: var(--muted); margin-left: 10px; }
+    .guest { margin-top: 10px; font-size: 15px; color: var(--muted); }
+    .guest strong { color: var(--white); font-weight: 600; }
+
+    /* ── Latest ──────────────────────────────── */
+    .latest { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: center; }
+    .latest h3 { margin-top: 16px; font-size: clamp(26px, 3vw, 34px); line-height: 1.15; }
+    .latest p.desc { margin-top: 14px; }
+    .latest .watch { display: inline-block; margin-top: 20px; font: 600 15px/1 var(--font-display); }
+
+    /* ── Grid ────────────────────────────────── */
+    .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 28px; }
+    .card h3 { margin-top: 14px; font-size: 19px; line-height: 1.3; font-weight: 600; }
+    .card .row { margin-top: 16px; }
+    .card p.desc { margin-top: 8px; font-size: 16px; }
+
+    /* ── Stay informed ───────────────────────── */
+    .cta { background: var(--night-2); border: 1px solid var(--line); border-radius: 12px; padding: 48px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+    .cta h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.15; }
+    .cta p { margin-top: 12px; }
+    .cta .actions { margin-top: 0; justify-content: flex-end; }
+
+    /* ── Partner ─────────────────────────────── */
+    .partner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .partner h2 { font-size: clamp(24px, 3vw, 30px); }
+    .partner p + p { margin-top: 12px; }
+
+    /* ── Footer ──────────────────────────────── */
+    footer { border-top: 1px solid var(--line); padding-top: 40px; padding-bottom: 48px; font-size: 15px; color: var(--muted); }
+    .foot { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
+    .foot nav { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot nav a { color: var(--text); }
+    .foot .back { display: flex; align-items: center; gap: 12px; color: var(--white); font: 600 16px/1.2 var(--font-display); }
+    .foot .back img { width: 32px; }
+
+    @media (max-width: 900px) {
+      .latest, .cta, .partner { grid-template-columns: 1fr; }
+      .cta { padding: 32px 24px; }
+      .cta .actions { justify-content: flex-start; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      :root { --gutter: 16px; }
+      body { font-size: 17px; }
+      .toplink { display: none; }
+      .hero { padding-top: 32px; padding-bottom: 56px; }
+      .section { padding-top: 56px; padding-bottom: 56px; }
+      .grid { grid-template-columns: 1fr; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#episodes">Skip to episodes</a>
+
+  <header class="wrap topbar">
+    <a class="presents" href="https://howtospeakdata.com/">
+      <img src="htsd-mark.svg" alt="" width="26" height="29">
+      How To Speak Data presents
+    </a>
+    <a class="toplink" href="https://howtospeakdata.com/">HowToSpeakData.com →</a>
+  </header>
+
+  <main>
+    <section class="wrap hero">
+      <span class="pill">A conversation series</span>
+      <h1 class="logotype"><span class="the">The</span>AI Analyst<span class="q">?</span></h1>
+      <p class="tagline">Diverse voices on the changing nature of data analysis.</p>
+      <p class="lede">Each episode, I sit down with founders, researchers and practitioners to test what AI is really doing to our field. Live conversations, honest demos, and plenty of disagreement. Hosted by <a href="https://howtospeakdata.com/">Andy Cotgreave</a>.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="https://howtospeakdata.substack.com/subscribe" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42H1.46V3.6h21.08v2.82zM1.46 9.24V24L12 18.12 22.54 24V9.24H1.46zM22.54 0H1.46v2.82h21.08V0z"/></svg>
+          Subscribe on Substack
+        </a>
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/acotgreave/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          Follow on LinkedIn
+        </a>
+      </div>
+      <p class="meta-line">9 episodes so far · <a href="https://www.youtube.com/playlist?list=PLTxpUfdl7jdJm2jZ8T7VV0zCTV_ARnch9" target="_blank" rel="noopener">Watch on YouTube</a></p>
+    </section>
+
+    <section class="wrap section" aria-labelledby="latest-h">
+      <div class="section-head"><h2 id="latest-h">Latest episode</h2></div>
+      <article class="latest">
+        <a class="video" href="https://www.youtube.com/watch?v=XUKDIYavlJY" target="_blank" rel="noopener" data-youtube="XUKDIYavlJY" data-title="Hands on with Ridge AI">
+          <img src="https://i.ytimg.com/vi/XUKDIYavlJY/maxresdefault.jpg" alt="Episode 9 thumbnail: Hands on with Ridge AI" width="1280" height="720">
+          <span class="play" aria-hidden="true"></span>
+        </a>
+        <div>
+          <span class="ep-num">Episode 9</span><span class="ep-date">14 Sep 2026</span>
+          <h3>Hands on with Ridge AI</h3>
+          <p class="guest">With <strong>Andy Cotgreave</strong>, solo review</p>
+          <p class="desc">I put Ridge AI through its paces. Three things stood out: it nudges you to give the AI proper context, the chat and the dashboard genuinely talk to each other, and the AI sits where your eyes are. Plus one thing that's up for debate.</p>
+          <a class="watch" href="https://www.youtube.com/watch?v=XUKDIYavlJY" target="_blank" rel="noopener">Watch on YouTube →</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="wrap section" id="episodes" aria-labelledby="all-h">
+      <div class="section-head">
+        <h2 id="all-h">All episodes</h2>
+        <a href="https://www.youtube.com/playlist?list=PLTxpUfdl7jdJm2jZ8T7VV0zCTV_ARnch9" target="_blank" rel="noopener">YouTube playlist →</a>
+      </div>
+      <!-- Newest first. To add an episode, copy an <li> block, paste it at the top, and move the
+           current "Latest episode" above into this list. Thumbnail: https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg -->
+      <ol class="grid" reversed>
+        <li class="card">
+          <a class="video" href="https://www.youtube.com/watch?v=bND6Cgye4wo" target="_blank" rel="noopener" data-youtube="bND6Cgye4wo" data-title="Why we're building Trulyp">
+            <img src="https://i.ytimg.com/vi/bND6Cgye4wo/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720">
+            <span class="play" aria-hidden="true"></span>
+          </a>
+          <div class="row"><span class="ep-num">Episode 8</span><span class="ep-date">26 Aug 2026</span></div>
+          <h3>Why we're building Trulyp</h3>
+          <p class="guest">With <strong>Klaus Schulte</strong> and <strong>Merlijn Buit</strong>, Apps for Tableau</p>
+          <p class="desc">What does the AI transformation look like inside the Tableau ecosystem? The team behind Apps for Tableau launch Trulyp.</p>
+        </li>
+        <li class="card">
+          <a class="video" href="https://www.youtube.com/watch?v=vjQ3iHbE7P0" target="_blank" rel="noopener" data-youtube="vjQ3iHbE7P0" data-title="Using AI to build data visualisation teaching tools">
+            <img src="https://i.ytimg.com/vi/vjQ3iHbE7P0/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720">
+            <span class="play" aria-hidden="true"></span>
+          </a>
+          <div class="row"><span class="ep-num">Episode 7</span><span class="ep-date">6 Aug 2026</span></div>
+          <h3>Using AI to build data visualisation teaching tools</h3>
+          <p class="guest">With <strong>Enrico Bertini</strong>, Northeastern University</p>
+          <p class="desc">What's worked and what's failed when using Claude to build explainers for teaching data viz, with a tool built live on the show.</p>
+        </li>
+        <li class="card">
+          <a class="video" href="https://www.youtube.com/watch?v=E8w5BA6AOnQ" target="_blank" rel="noopener" data-youtube="E8w5BA6AOnQ" data-title="Why we're building Ridge AI">
+            <img src="https://i.ytimg.com/vi/E8w5BA6AOnQ/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720">
+            <span class="play" aria-hidden="true"></span>
+          </a>
+          <div class="row"><span class="ep-num">Episode 6</span><span class="ep-date">9 Jul 2026</span></div>
+          <h3>Why we're building Ridge AI</h3>
+          <p class="guest">With <strong>Ellie Fields</strong>, co-founder and CEO, Ridge AI</p>
+          <p class="desc">Build vs. buy, browser-based processing, and data agents that get non-analysts past the blank screen.</p>
+        </li>
+        <li class="card">
+          <a class="video" href="https://www.youtube.com/watch?v=jhwuR3CP_ek" target="_blank" rel="noopener" data-youtube="jhwuR3CP_ek" data-title="Golden Analytics: Ask Me Anything">
+            <img src="https://i.ytimg.com/vi/jhwuR3CP_ek/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720">
+            <span class="play" aria-hidden="true"></span>
+          </a>
+          <div class="row"><span class="ep-num">Episode 5</span><span class="ep-date">1 Jun 2026</span></div>
+          <h3>Golden Analytics: Ask Me Anything</h3>
+          <p class="guest">With <strong>Francois Ajenstat</strong>, CEO and founder, Golden Analytics</p>
+          <p class="desc">Tableau's former CPO takes live questions on Golden and its "slider of autonomy" between you and the AI.</p>
+        </li>
+        <li class="card">
+          <a class="video" href="https://www.youtube.com/watch?v=9gOOigKYIcM" target="_blank" rel="noopener" data-youtube="9gOOigKYIcM" data-title="The future of data is fake">
+            <img src="https://i.ytimg.com/vi/9gOOigKYIcM/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720">
+            <span class="play" aria-hidden="true"></span>
+          </a>
+          <div class="row"><span class="ep-num">Episode 4</span><span class="ep-date">21 May 2026</span></div>
+          <h3>The future of data is fake</h3>
+          <p class="guest">With <strong>Mark Brocato</strong>, Head of Engineering, Tonic.ai</p>
+          <p class="desc">Strip away the hype and synthetic data is a genuine growth area. Why it's finally easy, and what it's for.</p>
+        </li>
+        <li class="card">
+          <a class="video" href="https://www.youtube.com/watch?v=DBsq9DQ16pU" target="_blank" rel="noopener" data-youtube="DBsq9DQ16pU" data-title="We're not chart makers and never were">
+            <img src="https://i.ytimg.com/vi/DBsq9DQ16pU/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720">
+            <span class="play" aria-hidden="true"></span>
+          </a>
+          <div class="row"><span class="ep-num">Episode 3</span><span class="ep-date">25 Mar 2026</span></div>
+          <h3>We're not chart makers and never were</h3>
+          <p class="guest">With <strong>Gabriele Mérite</strong>, founder, Figures &amp; Figures</p>
+          <p class="desc">Speed isn't improvement. The risks GenAI poses to data storytellers, and what we, and LLM makers, should do about it.</p>
+        </li>
+        <li class="card">
+          <a class="video" href="https://www.youtube.com/watch?v=Q-VOfc81LbQ" target="_blank" rel="noopener" data-youtube="Q-VOfc81LbQ" data-title="Semantic layers are overrated">
+            <img src="https://i.ytimg.com/vi/Q-VOfc81LbQ/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720">
+            <span class="play" aria-hidden="true"></span>
+          </a>
+          <div class="row"><span class="ep-num">Episode 2</span><span class="ep-date">4 Mar 2026</span></div>
+          <h3>"Semantic layers are overrated."</h3>
+          <p class="guest">With <strong>Charles Schaefer</strong>, Head of Product Marketing, Hex</p>
+          <p class="desc">I say semantic layers deserve more attention. Charles argues AI needs much more than semantics to deliver insight.</p>
+        </li>
+        <li class="card">
+          <a class="video" href="https://www.youtube.com/watch?v=ZQqDqFm1pg8" target="_blank" rel="noopener" data-youtube="ZQqDqFm1pg8" data-title="AI bubbles? Semantics? Data literacy ended?">
+            <img src="https://i.ytimg.com/vi/ZQqDqFm1pg8/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720">
+            <span class="play" aria-hidden="true"></span>
+          </a>
+          <div class="row"><span class="ep-num">Episode 1</span><span class="ep-date">18 Feb 2026</span></div>
+          <h3>AI bubbles? Semantics? Data literacy ended?</h3>
+          <p class="guest">With <strong>Christine Haskell</strong>, Dative Works</p>
+          <p class="desc">Christine challenges my predictions for 2026, and what it would take to prove them right or wrong.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wrap section" aria-labelledby="cta-h">
+      <div class="cta">
+        <div>
+          <h2 id="cta-h">Don't miss the next episode.</h2>
+          <p>New episodes, guest announcements and my takeaways from each show go out in the How To Speak Data newsletter and on LinkedIn first.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn--primary" href="https://howtospeakdata.substack.com/subscribe" target="_blank" rel="noopener">Subscribe on Substack</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/acotgreave/" target="_blank" rel="noopener">Follow on LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section partner" aria-labelledby="partner-h">
+      <h2 id="partner-h">Building something that changes how people analyse data?</h2>
+      <div>
+        <p>The AI Analyst? features products and ideas that are reshaping our field. Brand partnerships include a live episode, clips and a newsletter write-up.</p>
+        <p><a href="mailto:andy@howtospeakdata.com?subject=The%20AI%20Analyst%3F%20partnership">Talk to me about a partnership →</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="foot">
+      <a class="back" href="https://howtospeakdata.com/">
+        <img src="htsd-mark.svg" alt="" width="32" height="35">
+        <span>A How To Speak Data production</span>
+      </a>
+      <nav aria-label="Elsewhere">
+        <a href="https://howtospeakdata.com/">HowToSpeakData.com</a>
+        <a href="https://howtospeakdata.substack.com/" target="_blank" rel="noopener">Substack</a>
+        <a href="https://www.linkedin.com/in/acotgreave/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/@AndyCotgreave" target="_blank" rel="noopener">YouTube</a>
+      </nav>
+    </div>
+    <p style="margin-top:24px">© 2026 Andy Cotgreave</p>
+  </footer>
+
+  <script>
+    // Swap a video card for the YouTube player on click. Nothing loads from
+    // YouTube until then; without JS the card is a plain link to YouTube.
+    document.querySelectorAll('.video[data-youtube]').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + card.dataset.youtube + '?autoplay=1&rel=0';
+        iframe.title = card.dataset.title || 'YouTube video';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        var box = document.createElement('div');
+        box.className = 'video';
+        box.appendChild(iframe);
+        card.replaceWith(box);
+      });
+    });
+  </script>
+</body>
+</html>
